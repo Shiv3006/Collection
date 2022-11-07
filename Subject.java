@@ -1,17 +1,31 @@
-package Com.bnt;
+package com.bnt.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Subject {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int sId;
 	private String subjectName;
-	private int mark;
-	private int totalMark;
-
-	public Subject(String subjectName, int mark, int totalMark) {
-		super();
-		this.subjectName = subjectName;
-		this.mark = mark;
-		this.totalMark = totalMark;
-	}
+	private int marks;
+	private int totalMarks;
 	
+	@ManyToOne
+	private Student student;
+
+	public int getsId() {
+		return sId;
+	}
+
+	public void setsId(int sId) {
+		this.sId = sId;
+	}
+
 	public String getSubjectName() {
 		return subjectName;
 	}
@@ -20,34 +34,51 @@ public class Subject {
 		this.subjectName = subjectName;
 	}
 
-	public int getMark() {
-		return mark;
+	public int getMarks() {
+		return marks;
 	}
 
-	public void setMark(int mark) {
-		this.mark = mark;
+	public void setMarks(int marks) {
+		this.marks = marks;
 	}
 
-	public int getTotalMark() {
-		return totalMark;
+	public int getTotalMarks() {
+		return totalMarks;
 	}
 
-	public void setTotalMark(int totalMark) {
-		this.totalMark = totalMark;
+	public void setTotalMarks(int totalMarks) {
+		this.totalMarks = totalMarks;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Subject(int sId, String subjectName, int marks, int totalMarks, Student student) {
+		super();
+		this.sId = sId;
+		this.subjectName = subjectName;
+		this.marks = marks;
+		this.totalMarks = totalMarks;
+		this.student = student;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Subject [subjectName=");
-		builder.append(subjectName);
-		builder.append(", mark=");
-		builder.append(mark);
-		builder.append(", totalMark=");
-		builder.append(totalMark);
-		builder.append("]");
-		return builder.toString();
+		return "Subject [sId=" + sId + ", subjectName=" + subjectName + ", marks=" + marks + ", totalMarks="
+				+ totalMarks + ", student=" + student + "]";
 	}
 
+	public Subject() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 
 }
